@@ -1,37 +1,55 @@
-"""Example 1:
-Input: s=”this is an amazing program”
-Output: “program amazing an is this”
+"""
 
+Example 1:
+
+Input: s = "the sky is blue"
+Output: "blue is sky the"
 Example 2:
-Input: s=”This is decent”
-Output: “decent is This"""
 
-s = "this is an     amazing program"
+Input: s = "  hello world  "
+Output: "world hello"
+Explanation: Your reversed string should not contain leading or trailing spaces.
+Example 3:
 
-words = s.split()
-result = ' '.join(reversed(words))
-# print(result)
+Input: s = "a good   example"
+Output: "example good a"
+Explanation: You need to reduce multiple spaces between two words to a single space in the reversed string.
 
-result = ' '.join(words[::-1])
-# print(result)
+"""
 
 
-result=""
-start=0
-for i, char in enumerate(s):
-    if char == ' ' or i==len(s)-1:
-        print(i)
-        if i != len(s) - 1:
-            end = i
-        else:
-            end = i+1
+input_str = "a good   example"
 
-        word = s[start:end]
-        print(word)
-        result=word+' '+result if result else word
-        print(result)
-        start=i+1
+
+# s=input_str
+# s_l=s.split()[::-1]
+# ans_s=" ".join(s_l)
+# print(ans_s)
 
 
 
-print(result)
+def reverse_words(s):
+    ans_str=""
+    space_list = []
+    s = s.strip()
+
+    for i in range(len(s)):
+
+        if s[i] == " ":
+            space_list.append(i)
+    print(space_list)
+
+    start=0
+    for j in (space_list):
+
+        ans_str = s[start:j] + " " + ans_str
+
+        start=j+1
+
+    ans_str = s[start:len(s)] + " " + ans_str
+
+
+
+    return ans_str
+
+print(reverse_words(input_str))
